@@ -434,6 +434,32 @@ extension ReferenceLinker {
     }
 
     private func lookupTypeName(_ dotted: String, fileID: Int64, anchor: Int64?) -> TypeTarget? {
+        // PHP/C# namespace containers are not enclosing types. Match an explicit qualified
+        // annotation, or a type in the current/imported namespace, without guessing between
+        // duplicate declarations. Other language families keep the original resolution path.
+        if let family = files[fileID]?.family, family == .other(.php) || family == .other(.csharp) {
+            var names: Set<String> = [dotted]
+            if !dotted.contains(".") {
+                var parent = anchor
+                var depth = 0
+                while let id = parent, let symbol = symbols[id], depth < 64 {
+                    if symbol.kind == .namespace { names.insert(qualifiedName(id) + "." + dotted) }
+                    parent = symbol.parentID
+                    depth += 1
+                }
+                if family == .other(.csharp) {
+                    for module in externalImports[fileID] ?? [] { names.insert(module + "." + dotted) }
+                }
+            }
+            let leaf = dotted.split(separator: ".").last.map(String.init) ?? dotted
+            let exact = (typesByName[leaf] ?? []).filter { id in
+                guard let symbol = symbols[id], !symbol.isLocal, compatible(id, family: family),
+                      access(id, from: fileID, line: anchor.flatMap { symbols[$0]?.startLine } ?? 0).isVisible else { return false }
+                return names.contains(qualifiedName(id))
+            }
+            if exact.count == 1 { return .repo(exact[0]) }
+            if exact.count > 1 { return nil }
+        }
         let components = dotted.split(separator: ".").map(String.init)
         guard let first = components.first, !first.isEmpty else { return nil }
         var current: TypeTarget?

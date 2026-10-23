@@ -17,7 +17,7 @@ import VesaliusCore
 public final class ReferenceLinker {
     public static let edgeThreshold = 0.5
     /// Bumped whenever resolution rules change, so existing indexes re-link every reference.
-    public static let version = 8
+    public static let version = 9
 
     enum Family: Equatable {
         case swift, script, python, other(Language)
