@@ -50,9 +50,15 @@ let package = Package(
                 "javascript/src/scanner.c",
                 "python/src/parser.c",
                 "python/src/scanner.c",
+                "php/src/parser.c",
+                "php/src/scanner.c",
+                "php_only/src/parser.c",
+                "php_only/src/scanner.c",
+                "csharp/src/parser.c",
+                "csharp/src/scanner.c",
             ],
             publicHeadersPath: "include",
-            cSettings: [.unsafeFlags(["-w"])]
+            cSettings: [.unsafeFlags(["-w"]), .headerSearchPath("php/src")]
         ),
 
         // MARK: Engine

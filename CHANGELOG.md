@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+- PHP and C# syntax-tree declarations, calls, import aliases and explicit receiver-type hints.
+- Partial Blade and Razor code sections with original source lines, literal Blade view dependencies,
+  Razor injection directives, route literals and event method-group references.
+- Namespace-aware PHP/C# type links and a linker version bump to refresh existing indexes.
+
 ## 2.1.0 (2026-10-23)
 
 Two commands from nothing to answers, and a way to see whether Claude is using it.
