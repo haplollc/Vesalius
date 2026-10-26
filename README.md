@@ -371,7 +371,7 @@ from the closest ones, as of October 2026:
 | | **Vesalius** | [CodeGraph](https://github.com/colbymchenry/codegraph) | [graphify](https://github.com/Graphify-Labs/graphify) | [context-mode](https://github.com/mksglu/context-mode) |
 |---|---|---|---|---|
 | **What the agent gets** | answers: uses grouped by function, rename edit lists with the tests to run, feature maps, outlines | one `explore` tool that returns source, call paths and blast radius | graph queries (`query`, `path`, `explain`) over code, docs and media | a sandbox and search for tool output, plus session memory after compaction |
-| **Call graph** | Swift (resolved by type, via SwiftSyntax), TypeScript, JavaScript and Python; 13 more languages without calls | 30+ languages (tree-sitter) | about 40 languages (tree-sitter) | none: it indexes output, not code |
+| **Call graph** | Swift (resolved by type, via SwiftSyntax), TypeScript, JavaScript, Python, PHP and C#; 11 more languages without calls | 30+ languages (tree-sitter) | about 40 languages (tree-sitter) | none: it indexes output, not code |
 | **Runs on** | macOS 15+, Apple silicon | macOS, Linux, Windows | macOS, Linux, Windows | macOS, Linux, Windows |
 | **Leaves in your repository** | nothing | a `.codegraph/` folder | a `graphify-out/` folder | nothing |
 | **Setup adds** | an MCP entry and one permission rule | an MCP entry, a permission rule, a prompt hook and a CLAUDE.md block | a skill and a CLAUDE.md block; hooks in always-on mode | hooks on most tools, and skills |
@@ -482,7 +482,8 @@ stderr names the repository it is serving.
 | **Swift** | full syntax tree (SwiftSyntax) | declarations, calls, type uses, inheritance, property wrappers, `#if` branches, environment variables; references resolved by receiver type, scope and module, each with a confidence score |
 | **TypeScript, JavaScript** (incl. JSX/TSX) | tree-sitter | declarations, ES module and CommonJS imports and exports, references, `process.env` reads |
 | **Python** | tree-sitter | classes, functions, imports, `__all__`, references, `os.environ` reads |
-| Objective-C, C, C++, Go, Rust, Java, Kotlin, Ruby, PHP, C#, Dart, Shell, SQL | lexical | files, imports, declarations and type references (no call graph) |
+| **PHP, C#** | tree-sitter | declarations, namespace/import aliases, inheritance, calls and explicit receiver-type hints; partial Blade/Razor code sections ([coverage](docs/php-csharp.md)) |
+| Objective-C, C, C++, Go, Rust, Java, Kotlin, Ruby, Dart, Shell, SQL | lexical | files, imports, declarations and type references (no call graph) |
 | Markdown, JSON, YAML, HTML (including Vue and Svelte components), CSS and other text | full-text search | found by `ask` and `feature_map` |
 
 ## FAQ and troubleshooting
@@ -574,7 +575,7 @@ flowchart LR
 VesaliusKit (Swift package, shared by app, CLI, MCP)
 ├── VesaliusCore        models, result types, tokenizer, concept lexicon, JSON
 ├── RepositoryScanner   .gitignore engine, default + vendored-project exclusions, git metadata, module detection
-├── LanguageAnalysis    Swift (SwiftSyntax), TypeScript/JavaScript + Python (tree-sitter), lexical fallback
+├── LanguageAnalysis    Swift (SwiftSyntax), TypeScript/JavaScript + Python + PHP/C# (tree-sitter), lexical fallback
 ├── RepositoryIndex     SQLite (WAL) + FTS5 schema, import resolution, reference linking
 ├── GraphEngine         SCCs, PageRank, depth, reachability, Louvain clustering, risk and hotspot scores
 ├── HealthEngine        17 rules, 8-category score, architecture inference, extraction suggestions
@@ -639,7 +640,7 @@ for that: `sudo automationmodetool enable-automationmode-without-authentication`
 Copyright © 2026 Haplo, LLC. All rights reserved, except the VS Code extension in
 [`vscode-extension`](vscode-extension), which is [MIT licensed](vscode-extension/LICENSE).
 
-Vesalius builds on [tree-sitter](https://tree-sitter.github.io) and its TypeScript, JavaScript and Python grammars
+Vesalius builds on [tree-sitter](https://tree-sitter.github.io) and its TypeScript, JavaScript, Python, PHP and C# grammars
 (MIT, vendored with their licenses under `VesaliusKit/Sources/CTreeSitter*`, including tree-sitter's Unicode/ICU
 notice), and on [swift-syntax](https://github.com/swiftlang/swift-syntax) and
 [swift-argument-parser](https://github.com/apple/swift-argument-parser) (Apache 2.0).

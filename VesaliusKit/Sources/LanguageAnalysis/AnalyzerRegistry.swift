@@ -14,6 +14,8 @@ public struct AnalyzerRegistry: Sendable {
         SwiftAnalyzer(),
         TypeScriptAnalyzer(),
         PythonAnalyzer(),
+        WebTemplateAnalyzer(),
+        WebLanguageAnalyzer(),
         GenericAnalyzer(),
     ])
 
