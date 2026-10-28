@@ -647,8 +647,7 @@ for that: `sudo automationmodetool enable-automationmode-without-authentication`
 
 ## License and credits
 
-Copyright © 2026 Haplo, LLC. All rights reserved, except the VS Code extension in
-[`vscode-extension`](vscode-extension), which is [MIT licensed](vscode-extension/LICENSE).
+Copyright © 2026 Haplo, LLC. Vesalius is released under the MIT License. See [LICENSE](LICENSE).
 
 Vesalius builds on [tree-sitter](https://tree-sitter.github.io) and its TypeScript, JavaScript and Python grammars
 (MIT, vendored with their licenses under `VesaliusKit/Sources/CTreeSitter*`, including tree-sitter's Unicode/ICU
