@@ -254,6 +254,8 @@ another repository; every query refreshes the index first unless you pass `--no-
 | `vesalius map` | the clustered dependency map, by modules, folders, files or symbols |
 | `vesalius query "<sql>"` | read-only SQL against the index (`--schema` shows the tables) |
 | `vesalius watch` | keep the index current while you work |
+| `vesalius status --repo ~/code/my-app` | index status and repository statistics: how fresh the index is, and its file, symbol and reference counts |
+| `vesalius repos --json` | the repositories indexed on this Mac, and when each was last indexed |
 | `vesalius doctor` · `stats` | check the connection to Claude Code · what Claude asked |
 
 `vesalius --help` lists every command, grouped by what it's for.
