@@ -100,7 +100,9 @@ Next: start Claude Code in a project (in a session that's already open, run /mcp
   the `codex` command is installed.
 - It adds `mcp__vesalius__*` to `permissions.allow` in `~/.claude/settings.json`, so Claude Code runs the five
   read-only tools without asking. The rest of that file stays as it was, and `--no-permissions` skips this step.
-- It indexes the repository you're in, so the first answer doesn't wait.
+- It indexes the repository you're in, so the first answer doesn't wait. Pass `vesalius setup --no-index` to skip
+  that now (the first question will index it), or `vesalius setup --repo <path>` to index another repository
+  (default: the one containing the current directory).
 
 It never writes to your repository, your CLAUDE.md or your hooks. `--dry-run` shows the plan first, and
 `vesalius setup --undo` reverses it.
