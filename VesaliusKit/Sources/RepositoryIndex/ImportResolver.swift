@@ -66,6 +66,17 @@ public struct ImportResolver {
         switch file.language {
         case .typescript, .javascript, .html:
             return resolveScript(specifier, from: file)
+        case .php where specifier.hasPrefix("laravel-view:"):
+            let view = String(specifier.dropFirst("laravel-view:".count)).replacingOccurrences(of: ".", with: "/")
+            let suffix = "resources/views/" + view + ".blade.php"
+            let matches = filesByPath.values.filter { $0.path == suffix || $0.path.hasSuffix("/" + suffix) }
+            return matches.count == 1 ? .file(matches[0].id) : .unresolved
+        case .php where specifier.contains("\\"):
+            var parts = specifier.split(separator: "\\").map(String.init)
+            if parts.first == "App" { parts[0] = "app" }
+            let suffix = parts.joined(separator: "/") + ".php"
+            let matches = filesByPath.values.filter { $0.path == suffix || $0.path.hasSuffix("/" + suffix) }
+            return matches.count == 1 ? .file(matches[0].id) : .external(specifier)
         case .python:
             return resolvePython(specifier, kind: kind, names: names, from: file)
         case .swift:

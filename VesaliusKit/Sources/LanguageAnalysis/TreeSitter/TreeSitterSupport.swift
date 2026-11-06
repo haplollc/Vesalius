@@ -16,6 +16,7 @@ enum TreeSitterGrammar: Sendable {
     case tsx
     case javascript
     case python
+    case php, phpOnly, csharp
 
     var language: OpaquePointer {
         switch self {
@@ -23,6 +24,9 @@ enum TreeSitterGrammar: Sendable {
         case .tsx: tree_sitter_tsx()
         case .javascript: tree_sitter_javascript()
         case .python: tree_sitter_python()
+        case .php: tree_sitter_php()
+        case .phpOnly: tree_sitter_php_only()
+        case .csharp: tree_sitter_c_sharp()
         }
     }
 }

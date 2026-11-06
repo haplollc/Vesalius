@@ -77,7 +77,7 @@ public enum Language: String, Codable, Sendable, CaseIterable, Comparable {
     /// Languages with a dedicated syntax-tree analyzer.
     public var hasSyntaxAnalyzer: Bool {
         switch self {
-        case .swift, .typescript, .javascript, .python: true
+        case .swift, .typescript, .javascript, .python, .php, .csharp: true
         default: false
         }
     }
@@ -113,7 +113,7 @@ public enum Language: String, Codable, Sendable, CaseIterable, Comparable {
         "kt": .kotlin, "kts": .kotlin,
         "rb": .ruby, "rake": .ruby,
         "php": .php,
-        "cs": .csharp,
+        "cs": .csharp, "razor": .csharp, "cshtml": .csharp,
         "dart": .dart,
         "sh": .shell, "bash": .shell, "zsh": .shell, "fish": .shell,
         "html": .html, "htm": .html, "vue": .html, "svelte": .html,
