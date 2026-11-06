@@ -13,8 +13,8 @@ Vesalius gives Claude Code a map of your codebase, indexed entirely on your Mac,
   <img src="https://img.shields.io/badge/MCP-5%20tools-7C93FF" alt="MCP server with 5 tools">
   <img src="https://img.shields.io/badge/Claude%20Code-ready-D97757" alt="Works with Claude Code">
   <img src="https://img.shields.io/badge/indexing-100%25%20local-23955A" alt="Indexing runs entirely on your Mac">
-  [![GitHub stars](https://img.shields.io/github/stars/haplollc/Vesalius?style=flat)](https://github.com/haplollc/Vesalius/stargazers)
-  [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+  <a href="https://github.com/haplollc/Vesalius/stargazers"><img src="https://img.shields.io/github/stars/haplollc/Vesalius?style=flat" alt="GitHub stars"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT"></a>
 </p>
 
 <p align="center">
