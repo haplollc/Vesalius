@@ -664,6 +664,7 @@ It is named after Andreas Vesalius, whose *De humani corporis fabrica* (1543) ma
 could actually see. This tries to do the same for code.
 
 <p align="center"><sub>Made by <a href="https://github.com/haplollc">Haplo</a></sub></p>
+
 ---
 
 ## More from Haplo
